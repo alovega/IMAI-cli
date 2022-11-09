@@ -1,8 +1,8 @@
-export class profileData {
+export class ProfileData {
     statusCode!: number;
     data!: [any];
   }
 
-export interface profile {
-    name: string
+export interface Profile {
+    account: string
 }

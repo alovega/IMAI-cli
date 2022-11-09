@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, retry, throwError } from 'rxjs';
 
-import { profile, profileData } from './profile';
+import { ProfileData } from './profile';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,10 @@ export class AppService {
   };
   constructor(private http: HttpClient) { }
 
-  getProfile(profile: any): Observable<profileData> {
+  getProfile(profile: any): Observable<ProfileData> {
+    console.log(JSON.stringify(profile))
     return this.http
-      .post<profileData>(
+      .post<ProfileData>(
         this.apiUrl + '/api/profile',
         JSON.stringify(profile),
         this.httpOptions

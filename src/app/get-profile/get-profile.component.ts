@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AppService } from '../app.service';
-import { profileData } from '../profile';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { profileData } from '../profile';
 export class GetProfileComponent implements OnInit {
   accountForm: any;
   submitted = false
-  constructor(private fb: FormBuilder, private appService: AppService) { }
+  constructor(private fb: FormBuilder, private appService: AppService, private route: Router) { }
 
   ngOnInit(): void {
     this.accountForm = this.fb.group({
@@ -29,14 +29,9 @@ export class GetProfileComponent implements OnInit {
 
     if(this.accountForm.valid){
       console.log(this.accountForm.value)
-      this.getProfile(this.accountForm.value)
+      // this.getProfile(this.accountForm.value)
+      this.route.navigate(['profile-detail', this.accountForm.value.account]);
     }
-  }
-
-  getProfile(account:any){
-    return this.appService.getProfile(account).subscribe((data:any) =>{
-      console.log(data)
-    })
   }
 
 }

@@ -8,13 +8,16 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { GetProfileComponent } from './get-profile/get-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { LoadingInterceptor } from './loading.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    GetProfileComponent
+    GetProfileComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
