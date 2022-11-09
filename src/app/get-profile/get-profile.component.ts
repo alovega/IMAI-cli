@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
+import { SharedService } from '../shared/shared.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AppService } from '../app.service';
 export class GetProfileComponent implements OnInit {
   accountForm: any;
   submitted = false
-  constructor(private fb: FormBuilder, private appService: AppService, private route: Router) { }
+  constructor(private fb: FormBuilder, private appService: AppService, private route: Router, private sharedService:SharedService) { }
 
   ngOnInit(): void {
     this.accountForm = this.fb.group({
@@ -29,9 +30,16 @@ export class GetProfileComponent implements OnInit {
 
     if(this.accountForm.valid){
       console.log(this.accountForm.value)
-      // this.getProfile(this.accountForm.value)
+      this.getProfile(this.accountForm.value)
       this.route.navigate(['profile-detail', this.accountForm.value.account]);
     }
+  }
+
+  getProfile(account:any){
+    return this.appService.getProfile(account).subscribe((data:any) =>{
+      this.sharedService.profile_data.next(data)
+      console.log(data)
+    })
   }
 
 }

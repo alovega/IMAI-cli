@@ -1,34 +1,35 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faHeart, faComment, faCog, faVideo, faClone } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 import { AppService } from '../app.service';
 import { Profile, ProfileData } from '../profile';
+import { SharedService } from '../shared/shared.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @Input() data = '';
+  profile_data:any;
+  sub!: Subscription
   faHeart = faHeart;
   faComment= faComment;
   faCog=faCog;
   faVideo=faVideo;
   faClone=faClone
-  profile!: Profile
-  constructor(private appService: AppService, private route: ActivatedRoute) { 
-    this.profile = {account:this.route.snapshot.params['name']}
-    console.log(this.data);
+  constructor(private sharedService: SharedService, private route: ActivatedRoute) { 
   }
 
   ngOnInit(): void {
-    this.getProfile(this.profile);
   }
 
-  getProfile(account:Profile){
-    return this.appService.getProfile(account).subscribe((data:ProfileData) =>{
-      console.log(data)
-    })
+  ngAfterContentInit(){
+    this.sub = this.sharedService.profile_data.subscribe(
+      data => {
+        this.profile_data = data;
+      }
+    )
   }
 
 }
