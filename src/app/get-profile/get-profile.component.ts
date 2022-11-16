@@ -36,9 +36,9 @@ export class GetProfileComponent implements OnInit {
   }
 
   getProfile(account:any){
-    return this.appService.getProfile(account).subscribe((data:any) =>{
-      this.sharedService.profile_data.next(data)
-      console.log(data)
+    return this.appService.getProfile(account).subscribe((profile:any) =>{
+      this.sharedService.profile_data.next(profile.data)
+      console.log(profile)
     })
   }
 

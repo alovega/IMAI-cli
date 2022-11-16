@@ -9,6 +9,7 @@ export class LoaderService {
 
   setLoading(loading: boolean){
     this.loading = loading;
+    console.log(this.loading)
   }
 
   getLoading():boolean {
