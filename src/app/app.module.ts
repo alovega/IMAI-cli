@@ -11,13 +11,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     GetProfileComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@
     
                 <div class="profile-image">
                     <img src="{{display_data.profile_image_link}}" alt="">
+                    <app-image [url]="display_data.profile_image_link" *ngIf="display_data.profile_image_link"></app-image>
                  </div>
                  <div class="profile-user-settings">
                     <h1 class="profile-user-name">{{display_data.account}}</h1>
@@ -50,7 +51,8 @@
                             <span class="visually-hidden">Gallery</span><fa-icon [icon]=faClone aria-hidden="true"></fa-icon>
     
                         </div>
-                        <img src="{{gallery_item.image_url}}" crossorigin="anonymous" class="gallery-image" alt="">
+                        <!-- <img src="{{gallery_item.image_url}}" crossorigin="anonymous" class="gallery-image" alt=""> -->
+                        <app-image [url]="gallery_item.image_url" *ngIf="gallery_item.image_url"></app-image>
                         <div class="gallery-item-info">
                             <ul>
                                 <li class="gallery-item-likes">
