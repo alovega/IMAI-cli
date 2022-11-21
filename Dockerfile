@@ -1,5 +1,5 @@
 FROM node:16.18-alpine AS build
-WORKDIR /app
+WORKDIR /app/scrapper-cli
 COPY / ./
 COPY package*.json ./
 
@@ -9,4 +9,4 @@ COPY . .
 
 FROM nginx:1.17.1-alpine
 WORKDIR /app
-COPY --from=build /app/dist/scrapper-cli /usr/share/nginx/html
+COPY --from=build /app/scrapper-cli/dist/scrapper-cli /usr/share/nginx/html
