@@ -58,5 +58,9 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  redirect(link:any) {
+    window.location.href = link;
+  }
+
 
 }

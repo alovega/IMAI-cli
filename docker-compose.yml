@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  server:
+    image: scrapper-cli
+    ports:
+      - 4200:4200
+    tty: true
+    expose:
+      - 4200
+    stdin_open: true
+    environment:
+      - MODE=dev
+    command: start
